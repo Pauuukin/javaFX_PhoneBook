@@ -22,7 +22,8 @@ public class MainController {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow()); // определяем родителское окно
-            stage.show();
+            stage.show();                                                            //приводим к элементу Node, т.к. у него
+                                                                                     //есть методы .getScene().getWindow()
 
         } catch (IOException e) {
             e.printStackTrace();
