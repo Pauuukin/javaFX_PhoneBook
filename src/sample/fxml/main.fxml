@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="484.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="sample.controllers.MainController" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="484.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox maxHeight="70.0" prefHeight="70.0" prefWidth="416.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="78.0" text="Добавить">
+            <Button mnemonicParsing="false" onAction="#showDialog" prefHeight="34.0" prefWidth="78.0" text="Добавить">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
