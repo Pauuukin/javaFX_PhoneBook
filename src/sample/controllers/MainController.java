@@ -6,6 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -15,13 +18,34 @@ public class MainController {
 
 
     @FXML
-    private Button addButton;     //аннотация @FXML позволяет использовать в контроллере
+    private Button btnAdd;     //аннотация @FXML позволяет использовать в контроллере
                                   //связанную с .fxml файлом переменную, которая работает с конкретным компонентом
+    @FXML
+    private Button btnEdit;
+
+    @FXML
+    private Button btnDelite;
+
+    @FXML
+    private Button btnSearch;
+
+    @FXML
+    private TextField txtSearch;
+
+    @FXML
+    private TableView tableAddressBook;
+
+    @FXML
+    private Label labelCount;
+
+
+
+
 
     public void showDialog(ActionEvent actionEvent) {
         try{
 
-            addButton.setText("clicked!");
+            btnAdd.setText("clicked!");
 
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../fxml/edit.fxml"));

@@ -10,21 +10,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:controller="sample.controllers.MainController" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="484.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="484.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MainController">
    <children>
       <HBox maxHeight="70.0" prefHeight="70.0" prefWidth="416.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#showDialog" prefHeight="34.0" prefWidth="78.0" text="Добавить" fx:id="addButton"> //fx:id - для javafx, просто id: - для css
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#showDialog" prefHeight="34.0" prefWidth="78.0" text="Добавить"> //fx:id - для javafx, просто id: - для css
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Изменить">
+            <Button fx:id="btnEdit" mnemonicParsing="false" text="Изменить">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Удалить">
+            <Button fx:id="btnDelite" mnemonicParsing="false" text="Удалить">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
@@ -33,8 +33,8 @@
       </HBox>
       <AnchorPane maxHeight="30.0" prefHeight="30.0">
          <children>
-            <Button layoutX="301.0" layoutY="11.0" mnemonicParsing="false" text="Поиск" AnchorPane.rightAnchor="0.0" />
-            <TextField layoutX="12.0" layoutY="14.0" prefWidth="280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="80.0" />
+            <Button fx:id="btnSearch" layoutX="301.0" layoutY="11.0" mnemonicParsing="false" text="Поиск" AnchorPane.rightAnchor="0.0" />
+            <TextField fx:id="txtSearch" layoutX="12.0" layoutY="14.0" prefWidth="280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="80.0" />
          </children>
          <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -42,7 +42,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="169.0" prefWidth="360.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView prefHeight="400.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tableAddressBook" prefHeight="400.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn prefWidth="184.79998779296875" text="ФИО" />
                 <TableColumn prefWidth="193.60003662109375" text="Телефон" />
@@ -58,7 +58,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="42.0" prefWidth="100.0">
          <children>
-            <Label text="Количество записей" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+            <Label fx:id="labelCount" text="Количество записей" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
