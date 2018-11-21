@@ -10,15 +10,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import sample.interfaces.AddressBook;
 import sample.interfaces.impls.CollectionAddressBook;
 import sample.objects.Person;
+import javafx.collections.ListChangeListener;
 
 import java.io.IOException;
 
 public class MainController {
 
     private CollectionAddressBook addressBookImpl = new CollectionAddressBook();  /*создаем экземпляр коллекции*/
+
+
+    private  void updateCountLabel(){                                    /*обновляет лейбл "количество записей"*/
+        labelCount.setText("Количество записей: " +addressBookImpl.getPersonList().size());
+    }
 
     @FXML
     private Button btnAdd;     //аннотация @FXML позволяет использовать в контроллере
@@ -55,16 +60,22 @@ public class MainController {
         columnFIO.setCellValueFactory(new PropertyValueFactory<Person, String>("fio"));
         columnPhone.setCellValueFactory(new PropertyValueFactory<Person,String>("phone"));
 
+        addressBookImpl.getPersonList().addListener(new ListChangeListener<Person>(){   /*добавляем слушателя для события изменения листа*/
+            @Override
+                    public void onChanged(Change<? extends Person > c) {                /*делаем метод onChange который срабатывает
+                                                                                         при зменении коллекции и обновляет лейбл; у параметра "с" есть свои методы*/
+                updateCountLabel();
+            }
+        });
+
+
+
         addressBookImpl.fillTestData();                                 /*заполняем тестовыми данными*/
         tableAddressBook.setItems(addressBookImpl.getPersonList());     /*вызываем метод setItems (он может принимать только ObservableList)
                                                                           для fx:id таблицы и передаем в него addressBookImpl
                                                                           c методом getPersonList, который является просто геттером*/
-    }
 
-    private  void updateCountLabel(){                                    /*обновляет лейбл "количество записей"*/
-        labelCount.setText("Количество записей: "+addressBookImpl.getPersonList().size());
     }
-
 
 
 
