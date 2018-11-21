@@ -6,8 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.interfaces.impls.CollectionAddressBook;
-import sample.objects.Person;
-import sample.interfaces.impls.CollectionAddressBook;
 
 public class Main extends Application {
 
@@ -24,22 +22,10 @@ public class Main extends Application {
     }
 
     private void testData() {
-        CollectionAddressBook addressBook = new CollectionAddressBook(); //реализация с помощью коллекции
-                                                                       //создаем экземпляр CollectionAddressBook
-
-        Person person = new Person();           //тестовые данные
-        person.setFio("test1");
-        person.setPhone("1234");
-                                                //При дебаге в idea F8, F9
-        Person person2 = new Person();
-        person2.setFio("test2");
-        person2.setPhone("12345");
-
-        addressBook.add(person);
-        addressBook.add(person2);
-
-        person.setPhone("22222");
-        addressBook.delete(person);
+        CollectionAddressBook addressBook = new CollectionAddressBook();    //реализация с помощью коллекции
+                                                                            //создаем экземпляр CollectionAddressBook
+        addressBook.fillTestData();                                         //заполняем коллекцию данными
+        addressBook.print();
     }
 
 

@@ -28,4 +28,28 @@ public class CollectionAddressBook implements AddressBook { //создаем р�
     public ArrayList<Person> getPersonList(){   // геттер для коллекции
         return personList;
     }
+
+    public void print(){
+        int number=0;
+        System.out.println();
+        for(Person person : personList){
+            number++;
+            System.out.println(number+") Fio= "+ person.getFio()+" phone = " +person.getPhone());
+        }
+    }
+
+    public void fillTestData(){
+        personList.add(new Person("Ivan", "123"));
+        personList.add(new Person("igor", "234"));
+        personList.add(new Person("Petya", "345"));
+        personList.add(new Person("Kolya", "456"));
+        personList.add(new Person("Vasya", "567"));
+        personList.add(new Person("Oleg", "678"));
+        personList.add(new Person("Sasha", "789"));
+        personList.add(new Person("Andrey", "890"));
+        personList.add(new Person("Vadim", "901"));
+
+    }
 }
+
+

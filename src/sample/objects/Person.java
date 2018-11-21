@@ -5,7 +5,14 @@ public class Person {     //объект, который будет хранит
    private String fio;
    private String phone;
 
-    public String getFio() {          // чтобы не писать руками get\set методы:
+   public Person (String fio, String phone){   // Alt + insert
+       this.fio = fio;
+       this.phone = phone;
+   }
+
+
+
+   public String getFio() {          // чтобы не писать руками get\set методы:
         return fio;                   //Refactor->Encapsulate Field
     }
 
