@@ -18,16 +18,8 @@ public class Main extends Application {
         primaryStage.setMinHeight(490);
         primaryStage.setMinWidth(420);
 
-        testData(); //вызываем тестовый метод
-    }
 
-    private void testData() {
-        CollectionAddressBook addressBook = new CollectionAddressBook();    //реализация с помощью коллекции
-                                                                            //создаем экземпляр CollectionAddressBook
-        addressBook.fillTestData();                                         //заполняем коллекцию данными
-        addressBook.print();
     }
-
 
     public static void main(String[] args) {
         launch(args);

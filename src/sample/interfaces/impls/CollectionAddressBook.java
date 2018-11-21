@@ -1,5 +1,6 @@
 package sample.interfaces.impls;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import sample.interfaces.AddressBook;
 import sample.objects.Person;
 
@@ -8,7 +9,10 @@ import java.util.ArrayList;
 public class CollectionAddressBook implements AddressBook { //создаем реализацию интерфейса,
                                                             // в этом классе мы должны реализовать
                                                             // методы, описанные в интерфейсе
-    private ArrayList<Person> personList = new ArrayList<Person>();
+
+
+    private ObservableList<Person> personList = FXCollections.observableArrayList(); //теперь здесь имеем observableArrayListWrapper
+                                                                                     //который содержит в себе ArrayList и добавляет новые методы
 
     @Override
     public void add (Person person){
@@ -25,9 +29,12 @@ public class CollectionAddressBook implements AddressBook { //создаем р�
         personList.remove(person);
     }
 
-    public ArrayList<Person> getPersonList(){   // геттер для коллекции
+    public ObservableList<Person> getPersonList(){   // геттер для коллекции
         return personList;
     }
+
+
+
 
     public void print(){
         int number=0;
@@ -38,6 +45,7 @@ public class CollectionAddressBook implements AddressBook { //создаем р�
         }
     }
 
+
     public void fillTestData(){
         personList.add(new Person("Ivan", "123"));
         personList.add(new Person("igor", "234"));
@@ -45,9 +53,8 @@ public class CollectionAddressBook implements AddressBook { //создаем р�
         personList.add(new Person("Kolya", "456"));
         personList.add(new Person("Vasya", "567"));
         personList.add(new Person("Oleg", "678"));
-        personList.add(new Person("Sasha", "789"));
-        personList.add(new Person("Andrey", "890"));
-        personList.add(new Person("Vadim", "901"));
+        personList.add(new Person("Sasha", "123"));
+
 
     }
 }
