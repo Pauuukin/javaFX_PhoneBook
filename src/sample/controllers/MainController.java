@@ -31,7 +31,7 @@ public class MainController {
     @FXML
     private Button btnEdit;
     @FXML
-    private Button btnDelite;
+    private Button btnDelete;
     @FXML
     private Button btnSearch;
     @FXML
@@ -49,7 +49,7 @@ public class MainController {
     Смысл в том, что в PropertyValueFactory мы указываем название поля, и PropertyValueFactory
     автоматически считывает определенный гетер из Person(в дженерик указываем Класс и тип поля) и записывает его в данный column
     setCellValueFactory - позволяет указать значение для данного column.
-    Сам метод initialize для контроллера срабатывает один раз в контроллере сразу после загрузки FXML
+    Сам метод initialize срабатывает один раз в контроллере сразу после загрузки FXML
     ______________________________________________________________________________
                    |__|
                     \/
@@ -80,10 +80,39 @@ public class MainController {
 
 
     public void showDialog(ActionEvent actionEvent) {
+
+        Object source = actionEvent.getSource();  //получаем источник и записываем его в Object
+
+        if(!(source instanceof Button)){          //проверяем, является ли текущий объект кнопкой, если нажата не кнопка - выходим из метода
+            return;
+        }
+
+        Button clickedButton =(Button) source;      //source приводит к типу button и записываем к clickedButton
+        Person selectedPerson = (Person)tableAddressBook.getSelectionModel().getSelectedItem();   /*у tableView получаем SelectionModel
+                                                                                                    (выбранная запись в таблице), у него выбираем нужную запись*/
+
+        switch (clickedButton.getId()){
+            case "btnAdd":
+                System.out.println("add "+selectedPerson);
+                break;
+
+            case  "btnEdit":
+                System.out.println("edit "+selectedPerson);
+                break;
+
+            case  "btnDelete":
+                System.out.println("delete "+selectedPerson);
+                break;
+
+        }
+
+
         try{
 
-            btnAdd.setText("clicked!");   // при нажатии на кнопку срабатывает метод showDialog, и в нем
-                                          // мы можем работать с элементами по их fx:id
+           /*
+           btnAdd.setText("clicked!");    при нажатии на кнопку срабатывает метод showDialog, и в нем
+                                           мы можем работать с элементами по их fx:id
+            */
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("../fxml/edit.fxml"));
             stage.setTitle("Добавление записи");

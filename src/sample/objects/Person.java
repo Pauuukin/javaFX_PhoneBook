@@ -30,4 +30,12 @@ public class Person {     //объект, который будет хранит
 
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {             //alt+insert - toString
+        return "Person{" +
+                "fio='" + fio + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }
