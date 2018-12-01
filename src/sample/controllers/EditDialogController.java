@@ -36,9 +36,15 @@ public class EditDialogController {
         stage.hide();                                           /*меняем close на hide т.к. теперь это окно вызывается лишь однажды*/
     }
 
-    public void setPerson(Person person){
-        this.person = person;
+    public Person getPerson() {                                 //добавляем гетер типа Person для добавления новых записей в таблицу
+        return person;
+    }
 
+    public void setPerson(Person person){
+        if (person == null){                                    //добавили обработку для путого пользователя
+            return;
+        }
+        this.person = person;
         txtFIO.setText(person.getFio());
         txtPhone.setText(person.getPhone());
     }
