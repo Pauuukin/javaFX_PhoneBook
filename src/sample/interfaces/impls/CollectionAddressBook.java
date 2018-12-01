@@ -44,8 +44,6 @@ public class CollectionAddressBook implements AddressBook { //создаем р�
             System.out.println(number+") Fio= "+ person.getFio()+" phone = " +person.getPhone());
         }
     }
-
-
     public void fillTestData(){
         personList.add(new Person("Ivan", "123"));
         personList.add(new Person("igor", "234"));

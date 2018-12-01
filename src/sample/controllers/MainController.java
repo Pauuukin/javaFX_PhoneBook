@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -18,20 +19,16 @@ import sample.objects.Person;
 import javafx.collections.ListChangeListener;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainController {
+public class MainController implements Initializable {                              //добавляем реализацию интерфейса Initializable для локализации в контроллере
 
     private CollectionAddressBook addressBookImpl = new CollectionAddressBook();    /*создаем экземпляр коллекции*/
     private Stage mainStage;                                                        //ссылка на главное окно
 
     public void setMainStage(Stage mainStage){                                      //в классе Main вызывается этот метод и теперь
         this.mainStage = mainStage;                                                 //в контроллере мы имеем ссылку на главное окно
-    }
-
-
-
-    private  void updateCountLabel(){                                    /*обновляет лейбл "количество записей"*/
-        labelCount.setText("Количество записей: " +addressBookImpl.getPersonList().size());
     }
 
     @FXML
@@ -59,6 +56,7 @@ public class MainController {
     private EditDialogController editDialogController;          //экземпляр класса контроллера модального окна
     private Stage editDialogStage;
 
+    private ResourceBundle resourceBundle;                      //переменная для Локализации
 
 
     /*
@@ -71,8 +69,9 @@ public class MainController {
                     \/
      */
 
-    @FXML
-    private void initialize(){
+    @Override
+    public void initialize(URL location, ResourceBundle resources){             //теперь этот метод реализует еще и локализацию
+        this.resourceBundle = resources;
         columnFIO.setCellValueFactory(new PropertyValueFactory<Person, String>("fio"));
         columnPhone.setCellValueFactory(new PropertyValueFactory<Person,String>("phone"));
         fillData();
@@ -114,6 +113,11 @@ public class MainController {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    private  void updateCountLabel(){                                    /*обновляет лейбл "количество записей"*/
+        labelCount.setText(resourceBundle.getString("count") +": " + addressBookImpl.getPersonList().size());
+     //   System.out.println(addressBookImpl.getPersonList().size());
     }
 
 
@@ -169,4 +173,6 @@ public class MainController {
 
         //  editDialogStage.show();
     }
+
+
 }

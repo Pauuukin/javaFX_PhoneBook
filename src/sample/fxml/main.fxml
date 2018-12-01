@@ -12,7 +12,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="484.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MainController">
    <children>
-      <HBox maxHeight="70.0" prefHeight="70.0" prefWidth="416.0">
+      <HBox maxHeight="70.0" prefHeight="52.0" prefWidth="390.0">
          <children>
             <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#actionButtonPressed" prefHeight="34.0" prefWidth="78.0" text="Добавить"> //fx:id - для javafx, просто id: - для css
                <HBox.margin>
@@ -31,7 +31,7 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane maxHeight="30.0" prefHeight="30.0">
+      <AnchorPane maxHeight="30.0" prefHeight="24.0" prefWidth="350.0">
          <children>
             <Button fx:id="btnSearch" layoutX="301.0" layoutY="11.0" mnemonicParsing="false" text="Поиск" AnchorPane.rightAnchor="0.0" />
             <TextField fx:id="txtSearch" layoutX="12.0" layoutY="14.0" prefWidth="280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="80.0" />
@@ -39,13 +39,16 @@
          <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </AnchorPane>
       <AnchorPane prefHeight="169.0" prefWidth="360.0" VBox.vgrow="ALWAYS">
          <children>
             <TableView fx:id="tableAddressBook" prefHeight="400.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn fx:id="columnFIO" prefWidth="184.79998779296875" text="ФИО" />
-                <TableColumn fx:id="columnPhone" prefWidth="193.60003662109375" text="Телефон" />
+                <TableColumn fx:id="columnFIO" prefWidth="184.79998779296875" text="%fio" />
+                <TableColumn fx:id="columnPhone" prefWidth="193.60003662109375" text="%phone" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -58,7 +61,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="42.0" prefWidth="100.0">
          <children>
-            <Label fx:id="labelCount" text="Количество записей" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+            <Label fx:id="labelCount" text="%count" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
