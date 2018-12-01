@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.interfaces.impls.CollectionAddressBook;
 
 public class Main extends Application {
 
@@ -16,7 +15,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
         primaryStage.setMinHeight(490);
-        primaryStage.setMinWidth(420);
+        primaryStage.setMinWidth(400);
 
     }
 

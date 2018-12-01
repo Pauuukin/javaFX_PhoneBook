@@ -33,7 +33,7 @@ public class EditDialogController {
                                                                 получаем его Stage, делаем приведение и закрываем его,
                                                                 причем нам не важно, кто его вызвал*/
         Stage stage = (Stage) sourse.getScene().getWindow();
-        stage.close();
+        stage.hide();                                           /*меняем close на hide т.к. теперь это окно вызывается лишь однажды*/
     }
 
     public void setPerson(Person person){
@@ -42,5 +42,9 @@ public class EditDialogController {
         txtFIO.setText(person.getFio());
         txtPhone.setText(person.getPhone());
     }
-
+    public void actionSave(ActionEvent actionEvent){            //метод реактирования записей
+        person.setPhone(txtPhone.getText());                    //работает с актуальным объектом, выбранным в таблице
+        person.setFio(txtFIO.getText());
+        actionClose(actionEvent);
+    }
 }

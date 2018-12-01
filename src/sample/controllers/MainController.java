@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.stage.Window;
 import sample.interfaces.impls.CollectionAddressBook;
 import sample.objects.Person;
 import javafx.collections.ListChangeListener;
@@ -45,6 +46,14 @@ public class MainController {
     @FXML
     private Label labelCount;
 
+    private Parent fxmlEdit;                                    /*выносим переменные на уровень класса, чтобы
+                                                                 они были доступны в методах*/
+    private FXMLLoader fxmlLoader = new FXMLLoader();
+    private EditDialogController editDialogController;
+    private Stage editDialogStage;
+
+
+
     /*
     Смысл в том, что в PropertyValueFactory мы указываем название поля, и PropertyValueFactory
     автоматически считывает определенный гетер из Person(в дженерик указываем Класс и тип поля) и записывает его в данный column
@@ -68,18 +77,23 @@ public class MainController {
             }
         });
 
-
-
         addressBookImpl.fillTestData();                                 /*заполняем тестовыми данными*/
         tableAddressBook.setItems(addressBookImpl.getPersonList());     /*вызываем метод setItems (он может принимать только ObservableList)
                                                                           для fx:id таблицы и передаем в него addressBookImpl
                                                                           c методом getPersonList, который является просто геттером*/
+        try {
+            fxmlLoader.setLocation(getClass().getResource("../fxml/edit.fxml"));    //теперь загружаем fxml один раз
+            fxmlEdit = fxmlLoader.load();
+            editDialogController = fxmlLoader.getController();                            // и тут же получаем у него контроллер
+        } catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 
 
 
-    public void showDialog(ActionEvent actionEvent) {
+    public void actionButtonPressed(ActionEvent actionEvent) {
 
         Object source = actionEvent.getSource();  //получаем источник и записываем его в Object
 
@@ -87,9 +101,13 @@ public class MainController {
             return;
         }
 
-        Button clickedButton =(Button) source;      //source приводит к типу button и записываем к clickedButton
+        Button clickedButton =(Button) source;                                                    //source приводит к типу button и записываем к clickedButton
         Person selectedPerson = (Person)tableAddressBook.getSelectionModel().getSelectedItem();   /*у tableView получаем SelectionModel
-                                                                                                    (выбранная запись в таблице), у него выбираем нужную запись*/
+                                                                                                (выбранная запись в таблице), у него выбираем нужную запись*/
+
+        Window parentWindow = ((Node) actionEvent.getSource()).getScene().getWindow();          // определяем родителское окно: у actionEvent вызываем метод .getSource -> приводим к элементу Node, т.к. у него
+                                                                                                //есть методы .getScene().getWindow() -> получаем родительское окно
+        editDialogController.setPerson(selectedPerson);
 
         switch (clickedButton.getId()){
             case "btnAdd":
@@ -98,6 +116,7 @@ public class MainController {
 
             case  "btnEdit":
                 System.out.println("edit "+selectedPerson);
+                showDialog(parentWindow);
                 break;
 
             case  "btnDelete":
@@ -105,28 +124,23 @@ public class MainController {
                 break;
 
         }
-
-
-        try{
-
            /*
            btnAdd.setText("clicked!");    при нажатии на кнопку срабатывает метод showDialog, и в нем
                                            мы можем работать с элементами по их fx:id
             */
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("../fxml/edit.fxml"));
-            stage.setTitle("Добавление записи");
-            stage.setMinWidth(300);
-            stage.setMinHeight(150);
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.WINDOW_MODAL);            // модальность
-            stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow()); // определяем родителское окно
-            stage.show();                                                            //у actionEvent вызываем метод .getSource -> приводим к элементу Node, т.к. у него
-                                                                                     //есть методы .getScene().getWindow() -> получаем родительское окно
+    }
 
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void showDialog(Window parentWindow) {
+        if(editDialogStage==null){                              //ленивая инициализация окна
+            editDialogStage = new Stage();
+            editDialogStage.setTitle("Редактирование записи");
+            editDialogStage.setMinHeight(150);
+            editDialogStage.setMinWidth(300);
+            editDialogStage.setResizable(false);
+            editDialogStage.setScene(new Scene(fxmlEdit));          //модальность
+            editDialogStage.initModality(Modality.WINDOW_MODAL);
+            editDialogStage.initOwner(parentWindow);
         }
+        editDialogStage.show();
     }
 }
