@@ -71,11 +71,12 @@ public class MainController implements Initializable {                          
 
     @Override
     public void initialize(URL location, ResourceBundle resources){             //теперь этот метод реализует еще и локализацию
+        initListeners();
         this.resourceBundle = resources;
         columnFIO.setCellValueFactory(new PropertyValueFactory<Person, String>("fio"));
         columnPhone.setCellValueFactory(new PropertyValueFactory<Person,String>("phone"));
         fillData();
-        initListeners();
+
         initLoader();
     }
 
@@ -170,8 +171,6 @@ public class MainController implements Initializable {                          
             editDialogStage.initOwner(mainStage);                   //теперь тут mainStage
         }
       editDialogStage.showAndWait();        //меняем show на showAndWait т.к. нужно дождаться ответа пользователя
-
-        //  editDialogStage.show();
     }
 
 
