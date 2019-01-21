@@ -17,7 +17,7 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader();                                       //используем отдельный загрузчик, чтобы мы могли взять из него mainController
         fxmlLoader.setLocation(getClass().getResource("../fxml/main.fxml"));      //и для него указать setMainStage(primaryStage), чтобы внутри MainController иметь доступ к главному окну
-        fxmlLoader.setResources(ResourceBundle.getBundle("sample.bundles.Locale",new Locale("en"))); //указываем Бандл и указываем текущую локализацию
+        fxmlLoader.setResources(ResourceBundle.getBundle("sample.bundles.Locale",new Locale("ru"))); //указываем Бандл и указываем текущую локализацию
 
         Parent fxmlMain = fxmlLoader.load();
         MainController mainController = fxmlLoader.getController();
