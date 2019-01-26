@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,7 +14,7 @@
    <children>
       <HBox maxHeight="70.0" prefHeight="52.0" prefWidth="390.0">
          <children>
-            <Button fx:id="btnAdd" minWidth="100.0" mnemonicParsing="false" onAction="#actionButtonPressed" prefHeight="34.0" prefWidth="78.0" text="%add"> //fx:id - для javafx, просто id: - для css
+            <Button fx:id="btnAdd" minWidth="100.0" mnemonicParsing="false" onAction="#actionButtonPressed" text="%add"> //fx:id - для javafx, просто id: - для css
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
@@ -68,7 +67,6 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Label>
-            <ComboBox fx:id="comboLocales" layoutX="216.0" layoutY="16.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
          <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" />

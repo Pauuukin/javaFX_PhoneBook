@@ -26,7 +26,7 @@ public class Main extends Application {
         primaryStage.setTitle(fxmlLoader.getResources().getString("phone_book"));   //теперь все через ресурсы по ключу для локализации
         primaryStage.setMinHeight(490);
         primaryStage.setMinWidth(400);
-        primaryStage.setScene(new Scene(fxmlMain, 300, 275));
+        primaryStage.setScene(new Scene(fxmlMain, 450 , 275));
         primaryStage.show();
     }
     public static void main(String[] args) {

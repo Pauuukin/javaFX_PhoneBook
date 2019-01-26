@@ -1,7 +1,5 @@
 package sample.controllers;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,13 +20,10 @@ import javafx.stage.Window;
 import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.control.textfield.TextFields;
 import sample.interfaces.impls.CollectionAddressBook;
-import sample.objects.Lang;
 import sample.objects.Person;
 import javafx.collections.ListChangeListener;
 import sample.utils.DialogManager;
-import sample.utils.LocaleManager;
 
-import javax.naming.ldap.ExtendedRequest;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -75,8 +70,8 @@ public class MainController  implements Initializable {                         
 
     private ObservableList<Person> backupList;
 
-    private static final String RU_CODE = "ru";
-    private static final String EN_CODE = "en";
+//    private static final String RU_CODE = "ru";
+//    private static final String EN_CODE = "en";
 
     /*
     Смысл в том, что в PropertyValueFactory мы указываем название поля, и PropertyValueFactory
@@ -113,21 +108,8 @@ public class MainController  implements Initializable {                         
 
     private void fillData() {
         fillTable();
-   //     fillLangComboBox();
     }
-/*    private void fillLangComboBox() {
-        Lang langRU = new Lang(0, RU_CODE, resourceBundle.getString("ru"), LocaleManager.RU_LOCALE);
-        Lang langEN = new Lang(0, EN_CODE, resourceBundle.getString("en"), LocaleManager.EN_LOCALE);
 
-        comboLocales.getItems().add(langRU);
-        comboLocales.getItems().add(langEN);
-
-        if (LocaleManager.getCurrentLang() == null) {
-            comboLocales.getSelectionModel().select(0);
-        } else {
-            comboLocales.getSelectionModel().select(LocaleManager.getCurrentLang().getIndex());
-        }
-    }*/
 
     private void fillTable() {
         addressBookImpl.fillTestData();                                 /*заполняем тестовыми данными*/
@@ -156,20 +138,6 @@ public class MainController  implements Initializable {                         
                 }
             }
         });
-//
-//        //слушаем изменение языка
-//        comboLocales.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                Lang selecedLang = (Lang) comboLocales.getSelectionModel().getSelectedItem();
-//                LocaleManager.setCurrentLang(selectedLang);
-//
-//                //уведомляем, что язык изменен
-//                setChanged();
-//                notifyObservers(selecedLang);
-//
-//            }
-//        });
     }
 
     private void initLoader() {
@@ -200,7 +168,7 @@ public class MainController  implements Initializable {                         
                                                                                                 (выбранная запись в таблице), у него выбираем нужную запись*/
 
         Window parentWindow = ((Node) actionEvent.getSource()).getScene().getWindow();          // определяем родителское окно: у actionEvent вызываем метод .getSource -> приводим к элементу Node, т.к. у него
-        //есть методы .getScene().getWindow() -> получаем родительское окно
+                                                                                                //есть методы .getScene().getWindow() -> получаем родительское окно
         editDialogController.setPerson(selectedPerson);
 
         switch (clickedButton.getId()) {
